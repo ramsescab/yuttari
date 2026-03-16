@@ -788,6 +788,55 @@
       .poster-title { font-size: 3rem; }
       .theme-toggle { top: 0.75rem; right: 0.75rem; }
     }
+
+    /* ── Table of contents ── */
+    .toc {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 90;
+      display: none;
+    }
+
+    .toc ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .toc a {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .toc a::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 1px;
+      background: var(--card-border);
+      transition: width 0.2s ease, background 0.2s ease;
+    }
+
+    .toc a:hover { color: var(--fg); }
+    .toc a:hover::before { width: 16px; background: var(--fg); }
+
+    .toc a.active { color: var(--fg); }
+    .toc a.active::before { width: 16px; background: var(--fg); }
+
+    @media (min-width: 1100px) {
+      .toc { display: block; }
+    }
   </style>
 </head>
 <body>
@@ -797,6 +846,16 @@
     <button onclick="setTheme('dark')">☾ Dark</button>
   </div>
 
+  <!-- Table of contents (fixed left, wide screens only) -->
+  <nav class="toc">
+    <ul>
+      <li><a href="#sec-base">Base</a></li>
+      <li><a href="#sec-colors">Colors</a></li>
+      <li><a href="#sec-colorlist">Color List</a></li>
+      <li><a href="#sec-previews">Previews</a></li>
+    </ul>
+  </nav>
+
   <div class="container">
     <header>
       <h1 id="theme-title">ゆったり</h1>
@@ -805,14 +864,14 @@
     </header>
 
     <p class="intro">
-      For years, I've been customizing most of the devices, apps or UIs using this theme. Even my personal website, Slack or any other possible space is using this theme. Here's for you, so you get in the same mood.
+      for years, i've been painting every screen i touch with these colors — my terminal, my website, slack, even my phone. it's the palette that makes everything feel a little softer, a little quieter. now it's yours too. i hope it makes your corners of the internet feel just as cozy.
     </p>
     <p class="intro-sig">– <a href="https://ramses.work" target="_blank" rel="noopener">ramses c.</a></p>
 
     <hr class="section-divider">
 
     <!-- Base colors -->
-    <p class="section-title">Background &amp; Foreground</p>
+    <p class="section-title" id="sec-base">Background &amp; Foreground</p>
     <div class="base-row">
       <div class="base-card bg-card">
         <span class="label">Background</span>
@@ -829,7 +888,7 @@
     <!-- Colors -->
     <div class="palette-section">
       <div class="colors-header">
-        <p class="section-title">Colors</p>
+        <p class="section-title" id="sec-colors">Colors</p>
         <div class="view-tabs">
           <button class="active" onclick="setColorView('cards')">Cards</button>
           <button onclick="setColorView('list')">List</button>
@@ -908,7 +967,7 @@
 
     <!-- Color list (copyable) -->
     <div class="colorlist-section">
-      <p class="section-title">Color List</p>
+      <p class="section-title" id="sec-colorlist">Color List</p>
       <div class="colorlist" id="color-list">
         <button class="copy-btn" onclick="copyColorList()">Copy</button>
       </div>
@@ -917,7 +976,7 @@
     <hr class="section-divider">
 
     <!-- Previews -->
-    <div class="preview-section">
+    <div class="preview-section" id="sec-previews">
       <div class="preview-tabs">
         <button class="active" onclick="setPreview('terminal')">Terminal</button>
         <button onclick="setPreview('ui')">UI</button>
