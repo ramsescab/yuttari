@@ -1838,6 +1838,33 @@
         ].join('\n');
       }
 
+      else if (currentExport === 'ghostty') {
+        const strip = (hex) => hex.replace('#', '');
+        out = [
+          cmt(`# ${title} — Ghostty (~/.config/ghostty/config)`), '',
+          cl('background =', strip(t.bg)),
+          cl('foreground =', strip(t.fg)), '',
+          cmt('# Standard colors (0-7)'),
+          cl('palette = 0=', strip(t.bg)),
+          cl('palette = 1=', strip(c.red)),
+          cl('palette = 2=', strip(c.green)),
+          cl('palette = 3=', strip(c.yellow)),
+          cl('palette = 4=', strip(c.blue)),
+          cl('palette = 5=', strip(c.magenta)),
+          cl('palette = 6=', strip(c.cyan)),
+          cl('palette = 7=', strip(t.fg)), '',
+          cmt('# Bright colors (8-15)'),
+          cl('palette = 8=', strip(t.bg)),
+          cl('palette = 9=', strip(c.red_bright)),
+          cl('palette = 10=', strip(c.green_bright)),
+          cl('palette = 11=', strip(c.yellow_bright)),
+          cl('palette = 12=', strip(c.blue_bright)),
+          cl('palette = 13=', strip(c.magenta_bright)),
+          cl('palette = 14=', strip(c.cyan_bright)),
+          cl('palette = 15=', strip(t.fg))
+        ].join('\n');
+      }
+
       const container = document.getElementById('export-block');
       container.innerHTML = `<button class="copy-btn" onclick="copyExport()">Copy</button>\n` + out;
     }
