@@ -160,10 +160,10 @@
     .page-paper {
       position: fixed;
       inset: 0;
-      z-index: 9998;
+      z-index: 50;
       pointer-events: none;
-      opacity: 0.12;
-      mix-blend-mode: multiply;
+      opacity: 0.5;
+      mix-blend-mode: overlay;
       display: none;
     }
     .page-paper.active { display: block; }
@@ -2298,20 +2298,20 @@
       const pagePaper = document.getElementById('page-paper');
       if (!pagePaper) return;
       const paperUniforms = {
-        u_colorBack: getShaderColorFromString('#ffffff'),
-        u_colorFront: getShaderColorFromString('#9fadbc'),
-        u_contrast: 0.25,
-        u_roughness: 0.5,
-        u_fiber: 0.3,
-        u_fiberSize: 0.2,
-        u_crumples: 0.2,
-        u_crumpleSize: 0.35,
-        u_folds: 0.5,
-        u_foldCount: 4,
-        u_drops: 0.15,
+        u_colorBack: getShaderColorFromString('#e8dde0'),
+        u_colorFront: getShaderColorFromString('#b8a8ae'),
+        u_contrast: 0.4,
+        u_roughness: 0.6,
+        u_fiber: 0.4,
+        u_fiberSize: 0.25,
+        u_crumples: 0.3,
+        u_crumpleSize: 0.4,
+        u_folds: 0.6,
+        u_foldCount: 5,
+        u_drops: 0.2,
         u_fade: 0,
         u_seed: 5.8,
-        u_scale: 0.6,
+        u_scale: 0.8,
         u_rotation: 0,
         u_offsetX: 0,
         u_offsetY: 0,
