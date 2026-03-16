@@ -1,0 +1,22 @@
+# ゆったり Light
+# A calm, relaxed palette — soft hues that feel like a quiet afternoon
+
+# Background and foreground
+bg: #ffedf4  # Soft pink-lavender background
+fg: #4a3c42  # Dark muted brown-purple text
+
+# Standard colors
+red:     #b85e5e  # Muted rose
+green:   #7a9b7a  # Soft sage green
+blue:    #7a8bb8  # Dusty blue
+yellow:  #c2a875  # Warm cream
+magenta: #a67ba6  # Soft mauve
+cyan:    #7bb8b8  # Muted teal
+
+# Bright colors
+red_bright:     #d47979  # Warmer rose
+green_bright:   #8fb58f  # Brighter sage
+blue_bright:    #8fa5d4  # Lighter dusty blue
+yellow_bright:  #ddc299  # Lighter cream
+magenta_bright: #c299c2  # Brighter mauve
+cyan_bright:    #99d4d4  # Lighter teal

@@ -1,0 +1,22 @@
+# ゆったり Dark
+# A calm, relaxed palette — muted tones for late-night comfort
+
+# Background and foreground
+bg: #1e181c  # Deep muted plum background
+fg: #ffedf4  # Soft pink-lavender text
+
+# Standard colors
+red:     #c06868  # Muted rose
+green:   #82a682  # Soft sage green
+blue:    #8494c0  # Dusty blue
+yellow:  #ccb07e  # Warm cream
+magenta: #b085b0  # Soft mauve
+cyan:    #82c0c0  # Muted teal
+
+# Bright colors
+red_bright:     #e08a8a  # Warmer rose
+green_bright:   #9cc49c  # Brighter sage
+blue_bright:    #a0b4de  # Lighter dusty blue
+yellow_bright:  #e6cda6  # Lighter cream
+magenta_bright: #cda6cd  # Brighter mauve
+cyan_bright:    #a6dede  # Lighter teal
