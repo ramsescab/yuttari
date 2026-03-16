@@ -141,13 +141,10 @@
 
     /* ── Header — editorial ── */
     header {
-      text-align: left;
+      text-align: center;
       margin-bottom: 2rem;
       padding-bottom: 2rem;
       border-bottom: 1px solid var(--card-border);
-      display: flex;
-      align-items: center;
-      gap: 2rem;
     }
 
     header h1 {
@@ -158,13 +155,11 @@
       line-height: 1.1;
       writing-mode: vertical-rl;
       text-orientation: upright;
-      margin: 0;
-      flex-shrink: 0;
+      margin: 0 auto 1.5rem;
     }
 
     .header-text {
-      flex: 1;
-      min-width: 0;
+      text-align: center;
     }
 
     header .romanji {
@@ -966,8 +961,8 @@
       .section-title { font-size: 0.62rem; margin-bottom: 0.75rem; }
 
       /* Compact header */
-      header { margin-bottom: 1.25rem; padding-bottom: 1.25rem; gap: 1.25rem; }
-      header h1 { font-size: 2rem; }
+      header { margin-bottom: 1.25rem; padding-bottom: 1.25rem; }
+      header h1 { font-size: 2rem; margin-bottom: 1rem; }
       header .romanji { font-size: 0.78rem; margin-bottom: 0.4rem; }
       header .subtitle { font-size: 0.92rem; }
 
