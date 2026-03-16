@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soft Lavender Theme</title>
+  <title>ゆったり — Bloom Colors</title>
   <style>
-    :root {
-      --bg: #f4e8f0;
+    /* ── Light theme: ゆったり Light ── */
+    :root, [data-theme="light"] {
+      --bg: #ffedf4;
       --fg: #4a3c42;
+      --card-bg: #ffffff;
+      --card-border: rgba(74, 60, 66, 0.08);
+      --card-shadow: rgba(74, 60, 66, 0.07);
+      --card-shadow-hover: rgba(74, 60, 66, 0.13);
+      --muted: rgba(74, 60, 66, 0.5);
+      --terminal-bg: #4a3c42;
+      --terminal-fg: #ffedf4;
+      --terminal-bar: rgba(0,0,0,0.15);
+
       --red: #b85e5e;
       --green: #7a9b7a;
       --blue: #7a8bb8;
@@ -22,6 +32,33 @@
       --cyan-bright: #99d4d4;
     }
 
+    /* ── Dark theme: ゆったり ── */
+    [data-theme="dark"] {
+      --bg: #1e181c;
+      --fg: #ffedf4;
+      --card-bg: #282226;
+      --card-border: rgba(228, 216, 224, 0.06);
+      --card-shadow: rgba(0, 0, 0, 0.2);
+      --card-shadow-hover: rgba(0, 0, 0, 0.35);
+      --muted: rgba(228, 216, 224, 0.45);
+      --terminal-bg: #141013;
+      --terminal-fg: #ffedf4;
+      --terminal-bar: rgba(0,0,0,0.3);
+
+      --red: #c06868;
+      --green: #82a682;
+      --blue: #8494c0;
+      --yellow: #ccb07e;
+      --magenta: #b085b0;
+      --cyan: #82c0c0;
+      --red-bright: #e08a8a;
+      --green-bright: #9cc49c;
+      --blue-bright: #a0b4de;
+      --yellow-bright: #e6cda6;
+      --magenta-bright: #cda6cd;
+      --cyan-bright: #a6dede;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -30,29 +67,57 @@
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       min-height: 100vh;
       padding: 3rem 1.5rem;
+      transition: background 0.4s ease, color 0.4s ease;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    .container { max-width: 900px; margin: 0 auto; }
 
-    header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
+    /* ── Header ── */
+    header { text-align: center; margin-bottom: 3rem; }
 
     header h1 {
-      font-size: 2.4rem;
+      font-size: 2.6rem;
       font-weight: 300;
       letter-spacing: 0.04em;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
-    header p {
+    header .subtitle {
       font-size: 1rem;
-      opacity: 0.7;
+      color: var(--muted);
     }
+
+    /* ── Theme switcher ── */
+    .switcher {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 2.5rem;
+    }
+
+    .switcher button {
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.6rem 1.4rem;
+      border: 1.5px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--fg);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      letter-spacing: 0.02em;
+    }
+
+    .switcher button:first-child { border-radius: 10px 0 0 10px; }
+    .switcher button:last-child  { border-radius: 0 10px 10px 0; border-left: none; }
+
+    .switcher button.active {
+      background: var(--fg);
+      color: var(--bg);
+      border-color: var(--fg);
+    }
+
+    .switcher button:not(.active):hover { background: var(--card-shadow); }
 
     /* ── Section titles ── */
     .section-title {
@@ -61,10 +126,10 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       margin-bottom: 1.25rem;
-      opacity: 0.55;
+      color: var(--muted);
     }
 
-    /* ── Base / foreground row ── */
+    /* ── Base row ── */
     .base-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -79,17 +144,21 @@
       flex-direction: column;
       justify-content: flex-end;
       min-height: 130px;
-      position: relative;
-      overflow: hidden;
+      transition: background 0.4s ease, color 0.4s ease;
     }
 
     .base-card .label { font-weight: 600; font-size: 1.05rem; }
-    .base-card .hex { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85rem; opacity: 0.75; margin-top: 0.25rem; }
+    .base-card .hex {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      opacity: 0.65;
+      margin-top: 0.25rem;
+    }
 
     .base-card.bg-card {
       background: var(--bg);
       color: var(--fg);
-      border: 2px solid rgba(74, 60, 66, 0.12);
+      border: 1.5px solid var(--card-border);
     }
 
     .base-card.fg-card {
@@ -109,14 +178,15 @@
     .color-card {
       border-radius: 14px;
       overflow: hidden;
-      background: white;
-      box-shadow: 0 2px 12px rgba(74, 60, 66, 0.07);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: 0 2px 12px var(--card-shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.4s ease;
     }
 
     .color-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(74, 60, 66, 0.12);
+      box-shadow: 0 6px 20px var(--card-shadow-hover);
     }
 
     .swatch {
@@ -134,32 +204,23 @@
       backdrop-filter: blur(4px);
     }
 
-    .swatch.light-text span { color: #fff; background: rgba(255,255,255,0.15); }
+    .swatch.light-text span { color: #fff; background: rgba(255,255,255,0.14); }
     .swatch.dark-text span  { color: var(--fg); background: rgba(0,0,0,0.06); }
 
-    .color-info {
-      padding: 0.85rem 1rem;
-    }
-
-    .color-info .name {
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 0.15rem;
-    }
-
-    .color-info .desc {
-      font-size: 0.78rem;
-      opacity: 0.55;
-    }
+    .color-info { padding: 0.85rem 1rem; }
+    .color-info .name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.15rem; }
+    .color-info .desc { font-size: 0.78rem; color: var(--muted); }
 
     /* ── Terminal preview ── */
     .terminal-section { margin-bottom: 2.5rem; }
 
     .terminal {
-      background: var(--fg);
+      background: var(--terminal-bg);
       border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 4px 24px rgba(74, 60, 66, 0.15);
+      border: 1px solid var(--card-border);
+      box-shadow: 0 4px 24px var(--card-shadow);
+      transition: background 0.4s ease;
     }
 
     .terminal-bar {
@@ -167,25 +228,23 @@
       align-items: center;
       gap: 7px;
       padding: 0.75rem 1rem;
-      background: rgba(0,0,0,0.15);
+      background: var(--terminal-bar);
     }
 
-    .terminal-dot {
-      width: 12px; height: 12px;
-      border-radius: 50%;
-    }
+    .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
 
     .terminal-body {
       padding: 1.25rem 1.5rem;
       font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
       font-size: 0.85rem;
       line-height: 1.8;
+      color: var(--terminal-fg);
     }
 
     .terminal-body .prompt { color: var(--green-bright); }
-    .terminal-body .cmd    { color: var(--bg); }
+    .terminal-body .cmd    { color: var(--terminal-fg); }
     .terminal-body .str    { color: var(--yellow); }
-    .terminal-body .kw     { color: var(--magenta); }
+    .terminal-body .kw     { color: var(--magenta-bright); }
     .terminal-body .fn     { color: var(--blue-bright); }
     .terminal-body .cmt    { color: var(--cyan); opacity: 0.7; }
     .terminal-body .err    { color: var(--red-bright); }
@@ -193,24 +252,64 @@
     .terminal-body .type   { color: var(--cyan-bright); }
 
     /* ── Harmony strip ── */
-    .harmony-section { margin-bottom: 2rem; }
+    .harmony-section { margin-bottom: 2.5rem; }
 
     .harmony-strip {
       display: flex;
       border-radius: 14px;
       overflow: hidden;
       height: 64px;
-      box-shadow: 0 2px 12px rgba(74, 60, 66, 0.07);
+      border: 1px solid var(--card-border);
     }
 
     .harmony-strip div { flex: 1; transition: flex 0.3s ease; }
     .harmony-strip div:hover { flex: 2; }
 
+    /* ── Color list ── */
+    .colorlist-section { margin-bottom: 2rem; }
+
+    .colorlist {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.82rem;
+      line-height: 1.9;
+      white-space: pre;
+      overflow-x: auto;
+      position: relative;
+      transition: background 0.4s ease;
+    }
+
+    .colorlist .cl-comment { color: var(--muted); }
+    .colorlist .cl-key     { color: var(--fg); }
+    .colorlist .cl-value   { color: var(--magenta); font-weight: 600; }
+    .colorlist .cl-desc    { color: var(--muted); }
+
+    .copy-btn {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      font-family: inherit;
+      font-size: 0.72rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: var(--bg);
+      color: var(--fg);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      letter-spacing: 0.03em;
+    }
+
+    .copy-btn:hover { background: var(--fg); color: var(--bg); }
+
     /* ── Responsive ── */
     @media (max-width: 600px) {
       .base-row { grid-template-columns: 1fr; }
       .palette-grid { grid-template-columns: 1fr 1fr; }
-      header h1 { font-size: 1.8rem; }
+      header h1 { font-size: 2rem; }
       body { padding: 2rem 1rem; }
     }
   </style>
@@ -218,49 +317,55 @@
 <body>
   <div class="container">
     <header>
-      <h1>Soft Lavender</h1>
-      <p>A gentle, desaturated palette inspired by lavender fields at dusk</p>
+      <h1 id="theme-title">ゆったり</h1>
+      <p class="subtitle" id="theme-subtitle">A calm, relaxed palette — soft hues that feel like a quiet afternoon</p>
     </header>
+
+    <!-- Theme switcher -->
+    <div class="switcher">
+      <button class="active" onclick="setTheme('light')">☀ Light</button>
+      <button onclick="setTheme('dark')">☾ Dark</button>
+    </div>
 
     <!-- Base colors -->
     <p class="section-title">Background &amp; Foreground</p>
     <div class="base-row">
       <div class="base-card bg-card">
         <span class="label">Background</span>
-        <span class="hex">#f4e8f0</span>
+        <span class="hex" id="hex-bg">#ffedf4</span>
       </div>
       <div class="base-card fg-card">
         <span class="label">Foreground</span>
-        <span class="hex">#4a3c42</span>
+        <span class="hex" id="hex-fg">#4a3c42</span>
       </div>
     </div>
 
     <!-- Standard colors -->
     <div class="palette-section">
       <p class="section-title">Standard Colors</p>
-      <div class="palette-grid">
+      <div class="palette-grid" id="standard-grid">
         <div class="color-card">
-          <div class="swatch light-text" style="background: var(--red)"><span>#b85e5e</span></div>
+          <div class="swatch light-text" style="background: var(--red)"><span data-key="red"></span></div>
           <div class="color-info"><div class="name">Red</div><div class="desc">Muted rose</div></div>
         </div>
         <div class="color-card">
-          <div class="swatch light-text" style="background: var(--green)"><span>#7a9b7a</span></div>
+          <div class="swatch light-text" style="background: var(--green)"><span data-key="green"></span></div>
           <div class="color-info"><div class="name">Green</div><div class="desc">Soft sage green</div></div>
         </div>
         <div class="color-card">
-          <div class="swatch light-text" style="background: var(--blue)"><span>#7a8bb8</span></div>
+          <div class="swatch light-text" style="background: var(--blue)"><span data-key="blue"></span></div>
           <div class="color-info"><div class="name">Blue</div><div class="desc">Dusty blue</div></div>
         </div>
         <div class="color-card">
-          <div class="swatch dark-text" style="background: var(--yellow)"><span>#c2a875</span></div>
+          <div class="swatch dark-text" style="background: var(--yellow)"><span data-key="yellow"></span></div>
           <div class="color-info"><div class="name">Yellow</div><div class="desc">Warm cream</div></div>
         </div>
         <div class="color-card">
-          <div class="swatch light-text" style="background: var(--magenta)"><span>#a67ba6</span></div>
+          <div class="swatch light-text" style="background: var(--magenta)"><span data-key="magenta"></span></div>
           <div class="color-info"><div class="name">Magenta</div><div class="desc">Soft mauve</div></div>
         </div>
         <div class="color-card">
-          <div class="swatch light-text" style="background: var(--cyan)"><span>#7bb8b8</span></div>
+          <div class="swatch light-text" style="background: var(--cyan)"><span data-key="cyan"></span></div>
           <div class="color-info"><div class="name">Cyan</div><div class="desc">Muted teal</div></div>
         </div>
       </div>
@@ -269,29 +374,29 @@
     <!-- Bright colors -->
     <div class="palette-section">
       <p class="section-title">Bright Colors</p>
-      <div class="palette-grid">
+      <div class="palette-grid" id="bright-grid">
         <div class="color-card">
-          <div class="swatch light-text" style="background: var(--red-bright)"><span>#d47979</span></div>
+          <div class="swatch light-text" style="background: var(--red-bright)"><span data-key="red_bright"></span></div>
           <div class="color-info"><div class="name">Bright Red</div><div class="desc">Warmer rose</div></div>
         </div>
         <div class="color-card">
-          <div class="swatch dark-text" style="background: var(--green-bright)"><span>#8fb58f</span></div>
+          <div class="swatch dark-text" style="background: var(--green-bright)"><span data-key="green_bright"></span></div>
           <div class="color-info"><div class="name">Bright Green</div><div class="desc">Brighter sage</div></div>
         </div>
         <div class="color-card">
-          <div class="swatch dark-text" style="background: var(--blue-bright)"><span>#8fa5d4</span></div>
+          <div class="swatch dark-text" style="background: var(--blue-bright)"><span data-key="blue_bright"></span></div>
           <div class="color-info"><div class="name">Bright Blue</div><div class="desc">Lighter dusty blue</div></div>
         </div>
         <div class="color-card">
-          <div class="swatch dark-text" style="background: var(--yellow-bright)"><span>#ddc299</span></div>
+          <div class="swatch dark-text" style="background: var(--yellow-bright)"><span data-key="yellow_bright"></span></div>
           <div class="color-info"><div class="name">Bright Yellow</div><div class="desc">Lighter cream</div></div>
         </div>
         <div class="color-card">
-          <div class="swatch dark-text" style="background: var(--magenta-bright)"><span>#c299c2</span></div>
+          <div class="swatch dark-text" style="background: var(--magenta-bright)"><span data-key="magenta_bright"></span></div>
           <div class="color-info"><div class="name">Bright Magenta</div><div class="desc">Brighter mauve</div></div>
         </div>
         <div class="color-card">
-          <div class="swatch dark-text" style="background: var(--cyan-bright)"><span>#99d4d4</span></div>
+          <div class="swatch dark-text" style="background: var(--cyan-bright)"><span data-key="cyan_bright"></span></div>
           <div class="color-info"><div class="name">Bright Cyan</div><div class="desc">Lighter teal</div></div>
         </div>
       </div>
@@ -307,7 +412,7 @@
           <div class="terminal-dot" style="background: var(--green)"></div>
         </div>
         <div class="terminal-body">
-          <div><span class="cmt"># Soft Lavender Theme</span></div>
+          <div><span class="cmt" id="terminal-comment"># ゆったり Light</span></div>
           <div><span class="prompt">❯</span> <span class="cmd">cat</span> <span class="str">theme.py</span></div>
           <div>&nbsp;</div>
           <div><span class="kw">import</span> <span class="type">json</span></div>
@@ -343,6 +448,131 @@
         <div style="background: var(--magenta-bright)"></div>
       </div>
     </div>
+
+    <!-- Color list -->
+    <div class="colorlist-section">
+      <p class="section-title">Color List</p>
+      <div class="colorlist" id="color-list">
+        <button class="copy-btn" onclick="copyColorList()">Copy</button>
+      </div>
+    </div>
   </div>
+
+  <script>
+    const themes = {
+      light: {
+        name: 'ゆったり',
+        subtitle: 'A calm, relaxed palette — soft hues that feel like a quiet afternoon',
+        terminalComment: '# ゆったり Light',
+        bg: '#ffedf4', fg: '#4a3c42',
+        colors: {
+          red: '#b85e5e', green: '#7a9b7a', blue: '#7a8bb8',
+          yellow: '#c2a875', magenta: '#a67ba6', cyan: '#7bb8b8',
+          red_bright: '#d47979', green_bright: '#8fb58f', blue_bright: '#8fa5d4',
+          yellow_bright: '#ddc299', magenta_bright: '#c299c2', cyan_bright: '#99d4d4'
+        },
+        descs: {
+          bg: 'Soft pink-lavender background', fg: 'Dark muted brown-purple text',
+          red: 'Muted rose', green: 'Soft sage green', blue: 'Dusty blue',
+          yellow: 'Warm cream', magenta: 'Soft mauve', cyan: 'Muted teal',
+          red_bright: 'Warmer rose', green_bright: 'Brighter sage', blue_bright: 'Lighter dusty blue',
+          yellow_bright: 'Lighter cream', magenta_bright: 'Brighter mauve', cyan_bright: 'Lighter teal'
+        }
+      },
+      dark: {
+        name: 'ゆったり',
+        subtitle: 'A calm, relaxed palette — muted tones for late-night comfort',
+        terminalComment: '# ゆったり Dark',
+        bg: '#1e181c', fg: '#ffedf4',
+        colors: {
+          red: '#c06868', green: '#82a682', blue: '#8494c0',
+          yellow: '#ccb07e', magenta: '#b085b0', cyan: '#82c0c0',
+          red_bright: '#e08a8a', green_bright: '#9cc49c', blue_bright: '#a0b4de',
+          yellow_bright: '#e6cda6', magenta_bright: '#cda6cd', cyan_bright: '#a6dede'
+        },
+        descs: {
+          bg: 'Deep muted plum background', fg: 'Soft pink-lavender text',
+          red: 'Muted rose', green: 'Soft sage green', blue: 'Dusty blue',
+          yellow: 'Warm cream', magenta: 'Soft mauve', cyan: 'Muted teal',
+          red_bright: 'Warmer rose', green_bright: 'Brighter sage', blue_bright: 'Lighter dusty blue',
+          yellow_bright: 'Lighter cream', magenta_bright: 'Brighter mauve', cyan_bright: 'Lighter teal'
+        }
+      }
+    };
+
+    function setTheme(mode) {
+      document.documentElement.setAttribute('data-theme', mode);
+      const t = themes[mode];
+
+      // Update header
+      document.getElementById('theme-title').textContent = t.name;
+      document.getElementById('theme-subtitle').textContent = t.subtitle;
+      document.getElementById('terminal-comment').textContent = t.terminalComment;
+
+      // Update base hex labels
+      document.getElementById('hex-bg').textContent = t.bg;
+      document.getElementById('hex-fg').textContent = t.fg;
+
+      // Update swatch hex labels
+      document.querySelectorAll('[data-key]').forEach(el => {
+        el.textContent = t.colors[el.dataset.key];
+      });
+
+      // Update switcher buttons
+      document.querySelectorAll('.switcher button').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.includes(mode === 'light' ? 'Light' : 'Dark'));
+      });
+
+      // Render color list
+      renderColorList(mode);
+    }
+
+    function renderColorList(mode) {
+      const t = themes[mode];
+      const d = t.descs;
+      const c = t.colors;
+      const title = mode === 'light' ? 'ゆったり Light' : 'ゆったり Dark';
+
+      const lines = [
+        `<span class="cl-comment"># ${title}</span>`,
+        ``,
+        `<span class="cl-comment"># Background and foreground</span>`,
+        `<span class="cl-key">bg:</span> <span class="cl-value">${t.bg}</span> <span class="cl-desc"># ${d.bg}</span>`,
+        `<span class="cl-key">fg:</span> <span class="cl-value">${t.fg}</span> <span class="cl-desc"># ${d.fg}</span>`,
+        ``,
+        `<span class="cl-comment"># Standard colors (muted/desaturated versions)</span>`,
+        `<span class="cl-key">red:</span> <span class="cl-value">${c.red}</span> <span class="cl-desc"># ${d.red}</span>`,
+        `<span class="cl-key">green:</span> <span class="cl-value">${c.green}</span> <span class="cl-desc"># ${d.green}</span>`,
+        `<span class="cl-key">blue:</span> <span class="cl-value">${c.blue}</span> <span class="cl-desc"># ${d.blue}</span>`,
+        `<span class="cl-key">yellow:</span> <span class="cl-value">${c.yellow}</span> <span class="cl-desc"># ${d.yellow}</span>`,
+        `<span class="cl-key">magenta:</span> <span class="cl-value">${c.magenta}</span> <span class="cl-desc"># ${d.magenta}</span>`,
+        `<span class="cl-key">cyan:</span> <span class="cl-value">${c.cyan}</span> <span class="cl-desc"># ${d.cyan}</span>`,
+        ``,
+        `<span class="cl-comment"># Bright colors (slightly more saturated but still soft)</span>`,
+        `<span class="cl-key">red_bright:</span> <span class="cl-value">${c.red_bright}</span> <span class="cl-desc"># ${d.red_bright}</span>`,
+        `<span class="cl-key">green_bright:</span> <span class="cl-value">${c.green_bright}</span> <span class="cl-desc"># ${d.green_bright}</span>`,
+        `<span class="cl-key">blue_bright:</span> <span class="cl-value">${c.blue_bright}</span> <span class="cl-desc"># ${d.blue_bright}</span>`,
+        `<span class="cl-key">yellow_bright:</span> <span class="cl-value">${c.yellow_bright}</span> <span class="cl-desc"># ${d.yellow_bright}</span>`,
+        `<span class="cl-key">magenta_bright:</span> <span class="cl-value">${c.magenta_bright}</span> <span class="cl-desc"># ${d.magenta_bright}</span>`,
+        `<span class="cl-key">cyan_bright:</span> <span class="cl-value">${c.cyan_bright}</span> <span class="cl-desc"># ${d.cyan_bright}</span>`,
+      ];
+
+      const container = document.getElementById('color-list');
+      container.innerHTML = `<button class="copy-btn" onclick="copyColorList()">Copy</button>\n` + lines.join('\n');
+    }
+
+    function copyColorList() {
+      const el = document.getElementById('color-list');
+      const text = el.innerText.replace('Copy\n', '').replace('Copy', '');
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = el.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 1500);
+      });
+    }
+
+    // Init
+    setTheme('light');
+  </script>
 </body>
 </html>
