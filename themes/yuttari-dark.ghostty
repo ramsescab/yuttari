@@ -1,0 +1,19 @@
+# ゆったり Dark — Ghostty
+background = 1e181c
+foreground = ffedf4
+palette = 0=#1e181c
+palette = 1=#c06868
+palette = 2=#82a682
+palette = 3=#ccb07e
+palette = 4=#8494c0
+palette = 5=#b085b0
+palette = 6=#82c0c0
+palette = 7=#ffedf4
+palette = 8=#1e181c
+palette = 9=#e08a8a
+palette = 10=#9cc49c
+palette = 11=#e6cda6
+palette = 12=#a0b4de
+palette = 13=#cda6cd
+palette = 14=#a6dede
+palette = 15=#ffedf4

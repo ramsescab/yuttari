@@ -1,0 +1,17 @@
+/* ゆったり Dark */
+:root {
+  --bg: #1e181c;
+  --fg: #ffedf4;
+  --red: #c06868;
+  --green: #82a682;
+  --blue: #8494c0;
+  --yellow: #ccb07e;
+  --magenta: #b085b0;
+  --cyan: #82c0c0;
+  --red-bright: #e08a8a;
+  --green-bright: #9cc49c;
+  --blue-bright: #a0b4de;
+  --yellow-bright: #e6cda6;
+  --magenta-bright: #cda6cd;
+  --cyan-bright: #a6dede;
+}

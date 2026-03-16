@@ -1,0 +1,21 @@
+# ゆったり Dark — Alacritty (~/.config/alacritty/alacritty.toml)
+
+[colors.primary]
+background = "#1e181c"
+foreground = "#ffedf4"
+
+[colors.normal]
+red = "#c06868"
+green = "#82a682"
+blue = "#8494c0"
+yellow = "#ccb07e"
+magenta = "#b085b0"
+cyan = "#82c0c0"
+
+[colors.bright]
+red = "#e08a8a"
+green = "#9cc49c"
+blue = "#a0b4de"
+yellow = "#e6cda6"
+magenta = "#cda6cd"
+cyan = "#a6dede"

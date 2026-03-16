@@ -1,0 +1,20 @@
+{
+  "name": "ゆったり Dark",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#1e181c",
+    "editor.foreground": "#ffedf4",
+    "terminal.ansiRed": "#c06868",
+    "terminal.ansiGreen": "#82a682",
+    "terminal.ansiBlue": "#8494c0",
+    "terminal.ansiYellow": "#ccb07e",
+    "terminal.ansiMagenta": "#b085b0",
+    "terminal.ansiCyan": "#82c0c0",
+    "terminal.ansiBrightRed": "#e08a8a",
+    "terminal.ansiBrightGreen": "#9cc49c",
+    "terminal.ansiBrightBlue": "#a0b4de",
+    "terminal.ansiBrightYellow": "#e6cda6",
+    "terminal.ansiBrightMagenta": "#cda6cd",
+    "terminal.ansiBrightCyan": "#a6dede"
+  }
+}

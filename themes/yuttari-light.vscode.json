@@ -1,0 +1,20 @@
+{
+  "name": "ゆったり Light",
+  "type": "light",
+  "colors": {
+    "editor.background": "#ffedf4",
+    "editor.foreground": "#4a3c42",
+    "terminal.ansiRed": "#b85e5e",
+    "terminal.ansiGreen": "#7a9b7a",
+    "terminal.ansiBlue": "#7a8bb8",
+    "terminal.ansiYellow": "#c2a875",
+    "terminal.ansiMagenta": "#a67ba6",
+    "terminal.ansiCyan": "#7bb8b8",
+    "terminal.ansiBrightRed": "#d47979",
+    "terminal.ansiBrightGreen": "#8fb58f",
+    "terminal.ansiBrightBlue": "#8fa5d4",
+    "terminal.ansiBrightYellow": "#ddc299",
+    "terminal.ansiBrightMagenta": "#c299c2",
+    "terminal.ansiBrightCyan": "#99d4d4"
+  }
+}

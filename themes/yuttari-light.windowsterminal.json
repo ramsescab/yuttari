@@ -1,0 +1,17 @@
+{
+  "name": "ゆったり Light",
+  "background": "#ffedf4",
+  "foreground": "#4a3c42",
+  "red": "#b85e5e",
+  "green": "#7a9b7a",
+  "blue": "#7a8bb8",
+  "yellow": "#c2a875",
+  "purple": "#a67ba6",
+  "cyan": "#7bb8b8",
+  "brightRed": "#d47979",
+  "brightGreen": "#8fb58f",
+  "brightBlue": "#8fa5d4",
+  "brightYellow": "#ddc299",
+  "brightPurple": "#c299c2",
+  "brightCyan": "#99d4d4"
+}

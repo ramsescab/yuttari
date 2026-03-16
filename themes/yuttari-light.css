@@ -1,0 +1,17 @@
+/* ゆったり Light */
+:root {
+  --bg: #ffedf4;
+  --fg: #4a3c42;
+  --red: #b85e5e;
+  --green: #7a9b7a;
+  --blue: #7a8bb8;
+  --yellow: #c2a875;
+  --magenta: #a67ba6;
+  --cyan: #7bb8b8;
+  --red-bright: #d47979;
+  --green-bright: #8fb58f;
+  --blue-bright: #8fa5d4;
+  --yellow-bright: #ddc299;
+  --magenta-bright: #c299c2;
+  --cyan-bright: #99d4d4;
+}
