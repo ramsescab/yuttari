@@ -1714,6 +1714,20 @@
     </p>
   </footer>
 
+  <!-- Fullscreen color overlay -->
+  <div class="fs-overlay" id="fs-overlay">
+    <button class="fs-close" onclick="closeFullscreen()">✕</button>
+    <button class="fs-nav fs-prev" onclick="fsNav(-1)">‹</button>
+    <button class="fs-nav fs-next" onclick="fsNav(1)">›</button>
+    <div class="fs-info">
+      <div class="fs-name" id="fs-name"></div>
+      <div class="fs-hex" id="fs-hex"></div>
+      <div class="fs-desc" id="fs-desc"></div>
+    </div>
+    <div class="fs-dots" id="fs-dots"></div>
+    <div class="fs-counter" id="fs-counter"></div>
+  </div>
+
   <script>
     window.themes = {
       light: {
@@ -2244,19 +2258,5 @@
 
     initShader();
   </script>
-
-  <!-- Fullscreen color overlay -->
-  <div class="fs-overlay" id="fs-overlay">
-    <button class="fs-close" onclick="closeFullscreen()">✕</button>
-    <button class="fs-nav fs-prev" onclick="fsNav(-1)">‹</button>
-    <button class="fs-nav fs-next" onclick="fsNav(1)">›</button>
-    <div class="fs-info">
-      <div class="fs-name" id="fs-name"></div>
-      <div class="fs-hex" id="fs-hex"></div>
-      <div class="fs-desc" id="fs-desc"></div>
-    </div>
-    <div class="fs-dots" id="fs-dots"></div>
-    <div class="fs-counter" id="fs-counter"></div>
-  </div>
 </body>
 </html>
