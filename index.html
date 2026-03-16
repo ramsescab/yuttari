@@ -790,11 +790,7 @@
     .poster-bg {
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse at 20% 50%, var(--magenta-bright), transparent 50%),
-        radial-gradient(ellipse at 80% 30%, var(--blue-bright), transparent 50%),
-        radial-gradient(ellipse at 50% 90%, var(--cyan-bright), transparent 50%),
-        var(--bg);
+      z-index: 0;
       opacity: 0.45;
       transition: opacity 0.4s ease;
     }
@@ -1602,7 +1598,7 @@
   </footer>
 
   <script>
-    const themes = {
+    window.themes = {
       light: {
         name: 'ゆったり',
         subtitle: 'A calm, relaxed palette 〜 soft hues that feel like a quiet afternoon',
@@ -1679,6 +1675,9 @@
       // Render exports
       renderExport();
       renderColorViews();
+
+      // Update banner shader colors
+      if (window.updateBannerShader) window.updateBannerShader(t);
     }
 
     // Export formats
@@ -1978,6 +1977,58 @@
       tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === activeHref));
       fabLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === activeHref));
     }, { passive: true });
+  </script>
+  <script type="module">
+    import { ShaderMount, meshGradientFragmentShader, getShaderColorFromString } from 'https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.72/+esm';
+
+    const posterBg = document.querySelector('.poster-bg');
+    let shaderMount = null;
+
+    function getColorsForTheme(t) {
+      return [
+        t.bg,
+        t.colors.magenta_bright,
+        t.colors.blue_bright,
+        t.colors.cyan_bright,
+        t.bg
+      ].map(c => getShaderColorFromString(c));
+    }
+
+    function initShader() {
+      const mode = document.documentElement.getAttribute('data-theme') || 'light';
+      const t = window.themes?.[mode];
+      if (!t || !posterBg) return;
+
+      const colors = getColorsForTheme(t);
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const uniforms = {
+        u_colors: colors,
+        u_colorsCount: colors.length,
+        u_distortion: 0.4,
+        u_swirl: 0.05,
+        u_grainMixer: 0,
+        u_grainOverlay: 0,
+        u_scale: 1,
+        u_rotation: 0,
+        u_offsetX: 0,
+        u_offsetY: 0,
+        u_fit: 2, // cover
+        u_worldWidth: 0,
+        u_worldHeight: 0,
+        u_originX: 0.5,
+        u_originY: 0.5
+      };
+
+      shaderMount = new ShaderMount(posterBg, meshGradientFragmentShader, uniforms, { alpha: true }, reduceMotion ? 0 : 0.3);
+    }
+
+    window.updateBannerShader = function(t) {
+      if (!shaderMount) return;
+      const colors = getColorsForTheme(t);
+      shaderMount.setUniforms({ u_colors: colors, u_colorsCount: colors.length });
+    };
+
+    initShader();
   </script>
 </body>
 </html>
