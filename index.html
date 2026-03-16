@@ -1666,6 +1666,16 @@
         btn.classList.toggle('active', btn.textContent.includes(mode === 'light' ? 'Light' : 'Dark'));
       });
 
+      // Sync export theme buttons if following page theme
+      if (!exportMode) {
+        document.querySelectorAll('.export-theme-tabs button').forEach(btn => {
+          const isActive = (mode === 'light' && btn.textContent.includes('Light')) ||
+                           (mode === 'dark' && btn.textContent.includes('Dark'));
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-selected', isActive);
+        });
+      }
+
       // Render exports
       renderExport();
       renderColorViews();
@@ -1673,6 +1683,18 @@
 
     // Export formats
     let currentExport = 'raw';
+    let exportMode = null; // null = follow page theme
+
+    function setExportTheme(mode) {
+      exportMode = mode;
+      document.querySelectorAll('.export-theme-tabs button').forEach(btn => {
+        const isActive = (mode === 'light' && btn.textContent.includes('Light')) ||
+                         (mode === 'dark' && btn.textContent.includes('Dark'));
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-selected', isActive);
+      });
+      renderExport();
+    }
 
     function setExport(fmt) {
       currentExport = fmt;
@@ -1682,7 +1704,7 @@
     }
 
     function renderExport() {
-      const mode = document.documentElement.getAttribute('data-theme') || 'light';
+      const mode = exportMode || document.documentElement.getAttribute('data-theme') || 'light';
       const t = themes[mode];
       const c = t.colors;
       const d = t.descs;
