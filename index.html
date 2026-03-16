@@ -290,7 +290,12 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 9px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
+
+    .view-tabs::-webkit-scrollbar { display: none; }
 
     .view-tabs button {
       font-family: system-ui, -apple-system, sans-serif;
@@ -305,6 +310,8 @@
       color: var(--muted);
       cursor: pointer;
       transition: all 0.25s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .view-tabs button.active {
@@ -424,7 +431,12 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 9px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
+
+    .preview-tabs::-webkit-scrollbar { display: none; }
 
     .preview-tabs button {
       font-family: system-ui, -apple-system, sans-serif;
@@ -439,6 +451,8 @@
       color: var(--muted);
       cursor: pointer;
       transition: all 0.25s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .preview-tabs button.active {
@@ -510,8 +524,6 @@
     .export-section { margin-bottom: 2.5rem; }
 
     .export-section .colors-header { margin-bottom: 1.25rem; }
-
-    .export-section .view-tabs { flex-wrap: wrap; }
 
     .colorlist {
       background: var(--card-bg);
